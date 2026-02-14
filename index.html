@@ -15,14 +15,29 @@
         body {
             font-family: 'Cormorant Garamond', serif;
             background: linear-gradient(135deg, #ffeef8 0%, #ffe8f0 25%, #fff0f5 50%, #ffe4ec 75%, #ffd9e8 100%);
-            width: 1920px;
-            height: 1080px;
+            width: 100vw;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
             position: relative;
             margin: 0;
+        }
+
+        /* Responsive breakpoints */
+        @media (max-width: 1024px) {
+            body {
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                width: 100vw;
+                height: 100vh;
+            }
         }
 
         /* Floating hearts background */
@@ -103,6 +118,17 @@
             cursor: pointer;
             transition: transform 0.3s ease;
             position: relative;
+            width: 500px;
+            height: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .envelope-wrapper {
+                width: 90vw;
+                max-width: 400px;
+                height: auto;
+                aspect-ratio: 5/3;
+            }
         }
 
         .envelope-wrapper:hover {
@@ -120,53 +146,26 @@
         }
 
         .envelope {
-            width: 500px;
-            height: 300px;
+            width: 100%;
+            height: 100%;
             position: relative;
-            background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
-            border-radius: 4px;
-            box-shadow: 0 20px 60px rgba(219, 39, 119, 0.2);
             transition: opacity 0.5s ease;
         }
 
-        .envelope-top {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 250px solid transparent;
-            border-right: 250px solid transparent;
-            border-top: 150px solid #f687b3;
-            transform-origin: top center;
-            transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
-            z-index: 3;
-        }
-
-        .envelope-wrapper.opened .envelope-top {
-            transform: rotateX(-180deg);
+        .envelope svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            filter: drop-shadow(0 20px 60px rgba(219, 39, 119, 0.2));
         }
 
         .envelope-flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 250px solid transparent;
-            border-right: 250px solid transparent;
-            border-bottom: 150px solid #fbb6ce;
-            z-index: 1;
+            transform-origin: top center;
+            transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
         }
 
-        .envelope-body {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: #fbb6ce;
-            z-index: 2;
+        .envelope-wrapper.opened .envelope-flap {
+            transform: rotateX(-180deg);
         }
 
         /* Deutsche Post Logo Stamp */
@@ -177,6 +176,14 @@
             width: 120px;
             height: auto;
             z-index: 4;
+        }
+
+        @media (max-width: 768px) {
+            .stamp {
+                width: 80px;
+                top: 15px;
+                right: 15px;
+            }
         }
 
         .stamp svg {
@@ -204,11 +211,27 @@
             margin-bottom: 5px;
         }
 
+        @media (max-width: 768px) {
+            .to-label, .from-label {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+        }
+
         .name {
             font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 600;
+            font-size: 28px;
+            font-weight: 400;
+            font-style: italic;
             margin: 5px 0;
+            line-height: 1.4;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .name {
+                font-size: 20px;
+            }
         }
 
         .divider {
@@ -230,6 +253,13 @@
             letter-spacing: 1px;
         }
 
+        @media (max-width: 768px) {
+            .click-instruction {
+                font-size: 14px;
+                bottom: -40px;
+            }
+        }
+
         @keyframes fade-in-out {
             0%, 100% { opacity: 0; }
             50% { opacity: 0.7; }
@@ -242,6 +272,7 @@
             left: 50%;
             transform: translate(-50%, -50%) scale(0.8);
             width: 900px;
+            max-width: 90vw;
             background: linear-gradient(135deg, #fffef9 0%, #fef8f0 100%);
             border: 3px solid #e8dcc8;
             padding: 45px 60px;
@@ -252,6 +283,16 @@
             opacity: 0;
             transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
             pointer-events: none;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .letter {
+                width: 90vw;
+                padding: 30px 25px;
+                max-height: 85vh;
+            }
         }
 
         .letter::before {
@@ -290,10 +331,22 @@
             margin-bottom: 10px;
         }
 
+        @media (max-width: 768px) {
+            .letter-title {
+                font-size: 28px;
+            }
+        }
+
         .letter-subtitle {
             font-size: 18px;
             color: #9ca3af;
             font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .letter-subtitle {
+                font-size: 14px;
+            }
         }
 
         .letter-content {
@@ -302,6 +355,13 @@
             line-height: 1.7;
             margin-bottom: 30px;
             text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .letter-content {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
         }
 
         .letter-content p {
@@ -317,11 +377,19 @@
             text-align: center;
         }
 
+        @media (max-width: 768px) {
+            .question {
+                font-size: 22px;
+                margin-top: 20px;
+            }
+        }
+
         .button-container {
             display: flex;
             gap: 20px;
             justify-content: center;
             margin-top: 30px;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -334,6 +402,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
             letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .btn {
+                padding: 15px 35px;
+                font-size: 18px;
+            }
         }
 
         .btn-yes {
@@ -428,6 +503,14 @@
             z-index: 100;
             opacity: 0;
             transition: opacity 0.5s ease;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .response-screen {
+                padding: 40px 20px;
+            }
         }
 
         @keyframes gradient-shift {
@@ -445,6 +528,13 @@
             text-align: center;
             animation: celebration-pop 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             position: relative;
+            max-width: 90%;
+        }
+
+        @media (max-width: 768px) {
+            .response-content {
+                max-width: 100%;
+            }
         }
 
         @keyframes celebration-pop {
@@ -466,6 +556,13 @@
             margin-bottom: 30px;
             animation: bounce-rotate 2s ease-in-out infinite;
             display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .response-emoji {
+                font-size: 80px;
+                margin-bottom: 20px;
+            }
         }
 
         @keyframes bounce-rotate {
@@ -494,6 +591,13 @@
             line-height: 1.2;
         }
 
+        @media (max-width: 768px) {
+            .response-title {
+                font-size: 42px;
+                margin-bottom: 20px;
+            }
+        }
+
         @keyframes glow-pulse {
             0%, 100% {
                 text-shadow: 0 4px 20px rgba(219, 39, 119, 0.5),
@@ -512,6 +616,13 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             line-height: 1.6;
             animation: fade-in-up 1s ease 0.5s backwards;
+        }
+
+        @media (max-width: 768px) {
+            .response-message {
+                font-size: 20px;
+                max-width: 90%;
+            }
         }
 
         @keyframes fade-in-up {
@@ -541,6 +652,14 @@
             animation: fade-in-up 1s ease 1s backwards;
             text-decoration: none;
             display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .youtube-btn {
+                padding: 15px 35px;
+                font-size: 18px;
+                margin-top: 30px;
+            }
         }
 
         .youtube-btn:hover {
@@ -579,6 +698,13 @@
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
+        @media (max-width: 768px) {
+            .roses-message {
+                font-size: 16px;
+                padding: 0 20px;
+            }
+        }
+
         .roses-container {
             display: flex;
             justify-content: center;
@@ -590,6 +716,12 @@
             font-size: 50px;
             animation: rose-bloom 2s ease-in-out infinite;
             display: inline-block;
+        }
+
+        @media (max-width: 768px) {
+            .rose {
+                font-size: 40px;
+            }
         }
 
         .rose:nth-child(1) { animation-delay: 0s; }
@@ -641,9 +773,26 @@
     <div class="container">
         <div class="envelope-wrapper" id="envelopeWrapper">
             <div class="envelope">
-                <div class="envelope-top"></div>
-                <div class="envelope-flap"></div>
-                <div class="envelope-body"></div>
+                <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Envelope body -->
+                    <rect x="0" y="0" width="500" height="300" fill="#fbb6ce" rx="4"/>
+                    
+                    <!-- Back flap (lighter pink triangle) -->
+                    <polygon points="0,0 250,150 500,0" fill="#f9c8dd"/>
+                    
+                    <!-- Front flap (darker pink triangle) -->
+                    <polygon points="0,0 250,150 500,0" fill="#f687b3" class="envelope-flap"/>
+                    
+                    <!-- Left side -->
+                    <polygon points="0,0 0,300 250,150" fill="#f5a6c8"/>
+                    
+                    <!-- Right side -->
+                    <polygon points="500,0 500,300 250,150" fill="#f5a6c8"/>
+                    
+                    <!-- Bottom -->
+                    <polygon points="0,300 500,300 250,150" fill="#fbb6ce"/>
+                </svg>
+                
                 <div class="stamp">
                     <svg viewBox="0 0 605.357 145.498" xmlns="http://www.w3.org/2000/svg">
                         <g transform="translate(-91.6072,-651.0417)">
@@ -673,8 +822,7 @@
                     </svg>
                 </div>
                 <div class="address-label">
-                    <div class="to-label">To</div>
-                    <div class="name" id="toName">Nunu ❤️</div>
+                    <div class="name" id="toName">All the way from Berlin<br>with love 💕</div>
                 </div>
                 <div class="click-instruction">Click to open ✉️</div>
             </div>
@@ -706,7 +854,7 @@
             <div class="response-title">You've made me<br>the happiest!</div>
             
             <div class="virtual-roses">
-                <div class="roses-message">I'm waiting for your roses to arrive, here are some digital roses for you:</div>
+                <div class="roses-message">I couldn't unfortunately send you real flowers, but here are some digital roses for you:</div>
                 <div class="roses-container">
                     <span class="rose">🌹</span>
                     <span class="rose">🌹</span>
@@ -723,10 +871,10 @@
     </div>
 
     <script>
-        // Customize names here
-        const toName = "Nunu ❤️"; // Change to your girlfriend's name
+        // Customize envelope message
+        const envelopeMessage = "All the way from Berlin<br>with love 💕";
 
-        document.getElementById('toName').textContent = toName;
+        document.getElementById('toName').innerHTML = envelopeMessage;
 
         // Create floating hearts background
         const heartBg = document.getElementById('heartBg');
@@ -783,14 +931,23 @@
         let noClickCount = 0;
         let yesGrowthLevel = 1;
 
-        btnNo.addEventListener('mouseenter', function() {
+        function changeNoButton() {
             // Loop through the messages indefinitely
             noClickCount = (noClickCount + 1) % noButtonTexts.length;
-            this.textContent = noButtonTexts[noClickCount];
+            btnNo.textContent = noButtonTexts[noClickCount];
             
             // Make Yes button bigger each time
             yesGrowthLevel += 0.15;
             btnYes.style.transform = `scale(${yesGrowthLevel})`;
+        }
+
+        // For desktop - hover
+        btnNo.addEventListener('mouseenter', changeNoButton);
+
+        // For mobile - tap/click
+        btnNo.addEventListener('click', function(e) {
+            e.preventDefault();
+            changeNoButton();
         });
 
         btnYes.addEventListener('click', function() {
